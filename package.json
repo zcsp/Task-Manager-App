@@ -1,8 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://zcsp.github.io/Task-Manager/",
+  "homepage": "https://zcsp.github.io/Task-Manager-App/",
   "proxy": "http://localhost:3000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
