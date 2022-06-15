@@ -9,7 +9,7 @@ import ProjectPage from './pages/ProjectPage';
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/project/:project_id" element={<ProjectPage />} />
