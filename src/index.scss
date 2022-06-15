@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input {
+  padding: 4px;
+}
+
+.sneaky-input {
+  border: 1px solid transparent;
+  &:hover {
+    border: 1px solid #eee;
+  }
+}
