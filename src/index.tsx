@@ -5,6 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
+if (process.env.NODE_ENV !== 'development') {
+  axios.defaults.baseURL = 'https://radiant-wildwood-39217.herokuapp.com';
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
