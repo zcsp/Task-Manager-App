@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ReactNode, useEffect, useState } from 'react';
-import TopNav from '../components/TopNav';
+import TopNav from '../components/Navigation/Navigation';
 
 function MainLayout({ children }: { children: ReactNode }) {
 

@@ -1,0 +1,13 @@
+.color-input-root {
+  width: 18px; 
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+
+  .color-input-container {
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    z-index: 9999;
+  }
+}

@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import DashboardPage from './pages/DashboardPage';
-import ProjectPage from './pages/ProjectPage';
+import ProjectPage from './pages/ProjectPage/ProjectPage';
 
 function App() {
   return (

@@ -2,17 +2,22 @@ import axios from "axios";
 import { useState } from "react";
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
-const getDateInCorrectType = (d: Date | null) => d === null ? null : new Date(`${d} 00:00`)
+type DateValue = Date | null;
 
-const getInitialDates: (dates: [Date | null, Date | null]) => [Date | null, Date | null] = dates => [getDateInCorrectType(dates[0]), getDateInCorrectType(dates[1])]
+const getDateInCorrectType = (d: DateValue) => d === null ? null : new Date(`${d} 00:00`)
+
+const getInitialDates: (dates: [DateValue, DateValue]) => [DateValue, DateValue] = dates => [getDateInCorrectType(dates[0]), getDateInCorrectType(dates[1])]
 
 const TaskTimelineInput = ({ task, afterSubmit }: { task: any; afterSubmit: () => void; }) => {
-  const [dates, setDates] = useState<[Date | null, Date | null]>(getInitialDates([task.start_date, task.end_date]));
-  const handleChange = (dates: [Date, Date]) => {
+  const [dates, setDates] = useState<[DateValue, DateValue]>(getInitialDates([task.start_date, task.end_date]));
+  const handleChange = (dates: [DateValue, DateValue] | null) => {
+    if (dates === null) {
+      dates = [null, null]
+    }
     setDates(dates);
   }
   const handleSubmit = () => {
-    if (task.start_date !== dates[0] &&
+    if (dates && task.start_date !== dates[0] &&
       task.end_date !== dates[1]) {
       axios
         .put(`/api/tasks/${task.id}`,
@@ -30,7 +35,13 @@ const TaskTimelineInput = ({ task, afterSubmit }: { task: any; afterSubmit: () =
   }
 
   return (
-    <DateRangePicker onChange={handleChange} value={dates} format="M/dd" onCalendarClose={handleSubmit} />
+    <DateRangePicker
+      onChange={handleChange}
+      value={dates}
+      format="M/dd"
+      onCalendarClose={handleSubmit}
+      calendarIcon={null}
+    />
   )
 }
 

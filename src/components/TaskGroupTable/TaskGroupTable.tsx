@@ -1,12 +1,12 @@
-import { Link as RrdLink } from 'react-router-dom';
 import DeleteTaskButton from '../DeleteTaskButton';
 import NewTaskFormRow from '../NewTaskFormRow';
 import TaskGroupNameInput from '../TaskGroupNameInput/TaskGroupNameInput';
-import TaskNameInput from '../TaskNameInput';
+import TaskNameInput from '../TaskNameInput/TaskNameInput';
 import TaskStatusInput from '../TaskStatusInput';
 import TaskTimelineInput from '../TaskTimelineInput';
 import TaskUserInput from '../TaskUserInput';
 import './TaskGroupTable.scss';
+import TaskGroupColorInput from '../TaskGroupColorInput/TaskGroupColorInput';
 
 function TaskTable({ taskGroup, users, statuses, reloadFn }: { taskGroup: any; users: any[]; statuses: any[]; reloadFn: () => void; }) {
 
@@ -22,19 +22,19 @@ function TaskTable({ taskGroup, users, statuses, reloadFn }: { taskGroup: any; u
     <table className="task-group-table">
       <thead>
         <tr>
-          <td colSpan={3}>
+          <th colSpan={3} style={{ height: '1px' }}>
+            <TaskGroupColorInput taskGroup={taskGroup} afterSubmit={() => reloadFn()} />
             <TaskGroupNameInput taskGroup={taskGroup} afterSubmit={() => reloadFn()} />
-          </td>
-          <td>
+          </th>
+          <th>
             Assignee
-          </td>
-          <td>
+          </th>
+          <th>
             Status
-          </td>
-          <td>
+          </th>
+          <th>
             Timeline
-          </td>
-          <td />
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -51,7 +51,6 @@ function TaskTable({ taskGroup, users, statuses, reloadFn }: { taskGroup: any; u
               <TaskStatusInput taskId={task.id} taskStatusId={task.status_id} statuses={statuses} afterSubmit={() => reloadFn()} />
             </td>
             <td>
-              {getTimeline(task.startDate, task.endDate)}
               <TaskTimelineInput task={task} afterSubmit={() => reloadFn()} />
             </td>
             <td>

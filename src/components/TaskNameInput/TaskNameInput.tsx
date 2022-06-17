@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import './TaskNameInput.scss';
 
 const TaskNameInput = ({ taskId, taskName, afterSubmit }: { taskId: string; taskName: string; afterSubmit: () => void; }) => {
 
@@ -16,8 +17,8 @@ const TaskNameInput = ({ taskId, taskName, afterSubmit }: { taskId: string; task
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input id="name" name="name" value={name} onChange={handleChange} className="sneaky-input" />
+    <form className="task-name-form" onSubmit={handleSubmit}>
+      <input className="task-name-input sneaky-input" id="name" name="name" value={name} onChange={handleChange} />
     </form>
   )
 }

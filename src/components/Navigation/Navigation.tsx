@@ -1,4 +1,5 @@
 import { Link as RrdLink } from 'react-router-dom';
+import './Navigation.scss';
 
 function TopNav({ projects }: { projects: any[] }) {
   return (

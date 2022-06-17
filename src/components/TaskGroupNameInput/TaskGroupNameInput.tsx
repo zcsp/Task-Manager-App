@@ -18,8 +18,7 @@ const TaskGroupNameInput = ({ taskGroup, afterSubmit }: { taskGroup: any; afterS
 
   return (
     <form onSubmit={handleSubmit}>
-
-      <input id="name" name="name" value={name} onChange={handleChange} className="tg-name-input sneaky-input" />
+      <input id="name" name="name" value={name} onChange={handleChange} className="tg-name-input sneaky-input" style={{ color: taskGroup.color }} />
     </form>
   )
 }
