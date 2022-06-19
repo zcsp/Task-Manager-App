@@ -11,7 +11,7 @@ function SideNav({ projects }: { projects: any[] }) {
           Home
         </RrdLink>
         {projects.map((p) => (
-          <RrdLink to={`/project/${p.id}`}>
+          <RrdLink to={`/project/${p.id}`} key={p.id}>
             {p.name}
           </RrdLink>
         ))}

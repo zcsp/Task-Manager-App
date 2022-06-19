@@ -2,7 +2,7 @@ import DeleteTaskButton from '../DeleteTaskButton';
 import NewTaskFormRow from '../NewTaskFormRow';
 import TaskGroupNameInput from '../TaskGroupNameInput/TaskGroupNameInput';
 import TaskNameInput from '../TaskNameInput/TaskNameInput';
-import TaskStatusInput from '../TaskStatusInput';
+import TaskStatusInput from '../TaskStatusInput/TaskStatusInput';
 import TaskTimelineInput from '../TaskTimelineInput';
 import TaskUserInput from '../TaskUserInput';
 import './TaskGroupTable.scss';
