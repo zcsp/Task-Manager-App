@@ -1,6 +1,21 @@
-nav {
+#side-nav {
   padding: 16px;
-  a {
-    margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background-color: #393B51;
+
+  nav {
+    a {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
+
+  #side-nav-actions {
+    justify-self: flex-end;
   }
 }

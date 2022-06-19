@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ReactNode, useEffect, useState } from 'react';
-import TopNav from '../components/Navigation/Navigation';
+import SideNav from '../components/Navigation/Navigation';
+import './MainLayout.scss';
 
 function MainLayout({ children }: { children: ReactNode }) {
 
@@ -20,10 +21,12 @@ function MainLayout({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <>
-      <TopNav projects={projects} />
-      {children}
-    </>
+    <div id="main-layout">
+      <SideNav projects={projects} />
+      <main>
+        {children}
+      </main>
+    </div>
   );
 }
 

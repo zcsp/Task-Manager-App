@@ -4,17 +4,19 @@ import { useParams } from 'react-router-dom';
 import ProjectDescriptionInput from '../../components/ProjectDescriptionInput/ProjectDescriptionInput';
 import TaskGroupTable from '../../components/TaskGroupTable/TaskGroupTable';
 import MainLayout from '../../layouts/MainLayout';
+import { useNavigate } from "react-router-dom";
 import './ProjectPage.scss';
 
 function ProjectPage() {
 
   const { project_id } = useParams();
+  let navigate = useNavigate();
 
   const [project, setProject] = useState<any>();
   const [users, setUsers] = useState([]);
   const [statuses, setStatuses] = useState([]);
 
-  const resetProject = () => {
+  const resetProjects = () => {
     axios
       .get(`/api/projects/${project_id}`)
       .then((res) => {
@@ -51,8 +53,19 @@ function ProjectPage() {
       .catch((error) => console.error(error));
   }
 
+  const handleDelete = () => {
+    if (window.confirm(`Do you want to delete the project ${project.name}?`)) {
+      axios
+        .delete(`/api/projects/${project_id}`)
+        .then((res) => {
+          navigate('/')
+        })
+        .catch((error) => console.error(error));
+    }
+  }
+
   useEffect(() => {
-    resetProject()
+    resetProjects()
     resetUsers()
     resetStatuses();
   }, [project_id])
@@ -64,10 +77,15 @@ function ProjectPage() {
   return (
     <MainLayout>
       <div id="project-page">
-        <h1>{project.name}</h1>
-        <ProjectDescriptionInput projectId={project.id} projectDescription={project.description} afterSubmit={() => resetProject()} />
+        <div className="flex-container">
+          <h1 style={{ marginRight: '8px' }}>{project.name}</h1>
+          <button onClick={handleDelete}>
+            delete
+          </button>
+        </div>
+        <ProjectDescriptionInput projectId={project.id} projectDescription={project.description} afterSubmit={() => resetProjects()} />
         {project.task_groups && project.task_groups.map((tg: any) => (
-          <TaskGroupTable taskGroup={tg} users={users} reloadFn={resetProject} statuses={statuses} key={`${tg.name}-${tg.id}`} />
+          <TaskGroupTable taskGroup={tg} users={users} reloadFn={resetProjects} statuses={statuses} key={`${tg.name}-${tg.id}`} />
         ))}
         <button onClick={createTaskGroup}>
           New Task Group
