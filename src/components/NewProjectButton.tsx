@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ChangeEventHandler, FormEventHandler, MouseEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 import Modal from "./Modal";
 
 const NewProjectButton = ({ afterSubmit }: { afterSubmit: () => void; }) => {
@@ -34,9 +35,9 @@ const NewProjectButton = ({ afterSubmit }: { afterSubmit: () => void; }) => {
 
   return (
     <>
-      <button onClick={openModal}>
+      <Button onClick={openModal}>
         New Project
-      </button>
+      </Button>
       <Modal isOpen={modalOpen}>
         <h3>Create Project</h3>
         <form onSubmit={handleSubmit}>
@@ -44,7 +45,7 @@ const NewProjectButton = ({ afterSubmit }: { afterSubmit: () => void; }) => {
           <textarea placeholder="Description" value={projectDescription} onChange={handleDescriptionChange} />
           <input type="submit" value="Create" />
         </form>
-        <button onClick={closeModal}>close</button>
+        <Button onClick={closeModal}>close</Button>
       </Modal>
     </>
   )

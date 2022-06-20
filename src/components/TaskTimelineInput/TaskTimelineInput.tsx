@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
+import './TaskTimelineInput.scss';
 
 type DateValue = Date | null;
 
@@ -36,6 +37,7 @@ const TaskTimelineInput = ({ task, afterSubmit }: { task: any; afterSubmit: () =
 
   return (
     <DateRangePicker
+      className="task-daterange-picker"
       onChange={handleChange}
       value={dates}
       format="M/dd"

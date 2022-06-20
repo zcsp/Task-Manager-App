@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 
-const NewTaskFormRow = ({ taskGroup, afterSubmit }: { taskGroup: any; afterSubmit: () => void; }) => {
+const NewTaskRow = ({ taskGroup, afterSubmit }: { taskGroup: any; afterSubmit: () => void; }) => {
 
   const [name, setName] = useState<string>('');
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => setName(e.target.value);
@@ -22,15 +22,13 @@ const NewTaskFormRow = ({ taskGroup, afterSubmit }: { taskGroup: any; afterSubmi
   }
 
   return (
-    <tr>
-      <td colSpan={5}>
-        <form onSubmit={handleSubmit}>
-          <input type="hidden" id="task_group_id" name="task_group_id" value={taskGroup.id} readOnly />
-          <input placeholder="New Task" id="name" name="name" value={name} onChange={handleChange} />
-        </form>
-      </td>
-    </tr>
+    <div style={{ marginBottom: '12px' }}>
+      <form onSubmit={handleSubmit}>
+        <input type="hidden" id="task_group_id" name="task_group_id" value={taskGroup.id} readOnly />
+        <input type="text" placeholder="New Task" id="name" name="name" value={name} onChange={handleChange} />
+      </form>
+    </div>
   )
 }
 
-export default NewTaskFormRow;
+export default NewTaskRow;

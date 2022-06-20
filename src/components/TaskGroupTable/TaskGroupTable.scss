@@ -1,4 +1,7 @@
 .task-group-table {
+  table-layout: fixed;
+  min-width: 1000px;
+  max-width: 100%;
   margin-bottom: 16px;
 
   th {
@@ -8,5 +11,9 @@
 
   th > * {
     display: inherit;
+  }
+
+  td {
+    padding: 4px 8px;
   }
 }

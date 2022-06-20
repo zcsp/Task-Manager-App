@@ -21,9 +21,14 @@ const ProjectDescriptionInput = ({ projectId, projectDescription, afterSubmit }:
   }, [projectDescription])
 
   return (
-    <textarea name="description" onChange={handleChange} className="sneaky-input project-description-input" onBlur={handleBlur} placeholder="Add project description">
-      {description}
-    </textarea>
+    <textarea
+      name="description"
+      value={description}
+      onChange={handleChange}
+      className="sneaky-input project-description-input"
+      onBlur={handleBlur}
+      placeholder="Add project description"
+    />
   )
 }
 

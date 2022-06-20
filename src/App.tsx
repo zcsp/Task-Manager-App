@@ -4,17 +4,20 @@ import {
   Route,
 } from 'react-router-dom';
 import './App.css';
+import AppDataProvider from './contexts/AppContext';
 import DashboardPage from './pages/DashboardPage';
 import ProjectPage from './pages/ProjectPage/ProjectPage';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/project/:project_id" element={<ProjectPage />} />
-      </Routes>
-    </Router>
+    <AppDataProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/project/:project_id" element={<ProjectPage />} />
+        </Routes>
+      </Router>
+    </AppDataProvider>
   );
 }
 

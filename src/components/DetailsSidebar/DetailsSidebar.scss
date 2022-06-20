@@ -1,0 +1,32 @@
+#details-sidebar-backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.5);
+  display: none;
+
+  #details-sidebar {
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transition: 0.25s ease;
+    transition-delay: 0.1s;
+    background-color: #393B51;
+    padding: 32px;
+
+    .flex-container {
+      margin-bottom: 16px;
+    }
+  }
+
+  &.open {
+    display: block;
+    #details-sidebar {
+      transform: translateX(-100%);
+    }
+  }
+}

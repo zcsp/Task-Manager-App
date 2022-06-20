@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ReactNode, useEffect, useState } from 'react';
+import DetailsSidebar from '../components/DetailsSidebar/DetailsSidebar';
 import SideNav from '../components/Navigation/Navigation';
 import './MainLayout.scss';
 
@@ -25,6 +26,7 @@ function MainLayout({ children }: { children: ReactNode }) {
       <SideNav projects={projects} />
       <main>
         {children}
+        <DetailsSidebar />
       </main>
     </div>
   );

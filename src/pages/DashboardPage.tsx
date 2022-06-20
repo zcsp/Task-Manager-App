@@ -46,7 +46,7 @@ function DashboardPage() {
     <MainLayout>
       Dashboard
       {taskGroups.map((tg: any) => (
-        <TaskGroupTable taskGroup={tg} users={users} reloadFn={reloadTable} statuses={statuses} key={`${tg.name}-${tg.id}`} />
+        <TaskGroupTable taskGroup={tg} key={`${tg.name}-${tg.id}`} />
       ))}
     </MainLayout>
   );

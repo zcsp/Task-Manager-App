@@ -1,53 +1,33 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProjectDescriptionInput from '../../components/ProjectDescriptionInput/ProjectDescriptionInput';
 import TaskGroupTable from '../../components/TaskGroupTable/TaskGroupTable';
 import MainLayout from '../../layouts/MainLayout';
 import { useNavigate } from "react-router-dom";
 import './ProjectPage.scss';
+import NewTaskFormRow from '../../components/NewTaskForm';
+import Button from '../../components/Button';
+import { useAppDataContext } from '../../contexts/AppContext';
 
 function ProjectPage() {
 
   const { project_id } = useParams();
   let navigate = useNavigate();
+  const {
+    project,
+    setProject,
+    resetProject,
+  } = useAppDataContext();
 
-  const [project, setProject] = useState<any>();
-  const [users, setUsers] = useState([]);
-  const [statuses, setStatuses] = useState([]);
-
-  const resetProjects = () => {
-    axios
-      .get(`/api/projects/${project_id}`)
-      .then((res) => {
-        setProject(res.data)
-      })
-      .catch((error) => console.error(error));
-  }
-
-  const resetUsers = () => {
-    axios
-      .get("/api/users")
-      .then((res) => {
-        setUsers(res.data)
-      })
-      .catch((error) => console.error(error));
-  }
-
-  const resetStatuses = () => {
-    axios
-      .get("/api/statuses")
-      .then((res) => {
-        setStatuses(res.data)
-      })
-      .catch((error) => console.error(error));
-  }
+  useEffect(() => {
+    resetProject(project_id)
+  }, [project_id])
 
   const createTaskGroup = () => {
     axios
-      .post("/api/task_groups", { project_id: project.id })
+      .post("/api/task_groups", { project_id: project.id, color: '#0693e3' })
       .then((res) => {
-        console.log(res.data)
         setProject(res.data)
       })
       .catch((error) => console.error(error));
@@ -56,19 +36,13 @@ function ProjectPage() {
   const handleDelete = () => {
     if (window.confirm(`Do you want to delete the project ${project.name}?`)) {
       axios
-        .delete(`/api/projects/${project_id}`)
+        .delete(`/api/projects/${project.id}`)
         .then((res) => {
           navigate('/')
         })
         .catch((error) => console.error(error));
     }
   }
-
-  useEffect(() => {
-    resetProjects()
-    resetUsers()
-    resetStatuses();
-  }, [project_id])
 
   if (!project) {
     return <>Loading...</>
@@ -77,19 +51,22 @@ function ProjectPage() {
   return (
     <MainLayout>
       <div id="project-page">
-        <div className="flex-container">
+        <div id="project-page-name" className="flex-container">
           <h1 style={{ marginRight: '8px' }}>{project.name}</h1>
-          <button onClick={handleDelete}>
-            delete
-          </button>
+          <Button onClick={handleDelete}>
+            x
+          </Button>
         </div>
-        <ProjectDescriptionInput projectId={project.id} projectDescription={project.description} afterSubmit={() => resetProjects()} />
+        <ProjectDescriptionInput projectId={project.id} projectDescription={project.description} afterSubmit={() => resetProject(project_id)} />
         {project.task_groups && project.task_groups.map((tg: any) => (
-          <TaskGroupTable taskGroup={tg} users={users} reloadFn={resetProjects} statuses={statuses} key={`${tg.name}-${tg.id}`} />
+          <Fragment key={`${tg.name}-${tg.id}`}>
+            <TaskGroupTable taskGroup={tg} />
+            <NewTaskFormRow taskGroup={tg} afterSubmit={() => resetProject(project_id)} />
+          </Fragment>
         ))}
-        <button onClick={createTaskGroup}>
+        <Button onClick={createTaskGroup}>
           New Task Group
-        </button>
+        </Button>
       </div>
     </MainLayout>
   );

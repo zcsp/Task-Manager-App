@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ChangeEventHandler, useEffect, useState } from "react";
+import { useAppDataContext } from "../../contexts/AppContext";
 import './TaskStatusInput.scss';
 
 const getStatusById = (id: string, statuses: any[]) => {
@@ -7,7 +8,9 @@ const getStatusById = (id: string, statuses: any[]) => {
   return status
 }
 
-const TaskStatusInput = ({ taskId, taskStatusId, statuses, afterSubmit }: { taskId: string; taskStatusId: string; statuses: any[]; afterSubmit: () => void; }) => {
+const TaskStatusInput = ({ taskId, taskStatusId, afterSubmit }: { taskId: string; taskStatusId: string; afterSubmit: () => void; }) => {
+
+  const { statuses } = useAppDataContext();
   const [status, setStatus] = useState<any>(undefined);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const TaskStatusInput = ({ taskId, taskStatusId, statuses, afterSubmit }: { task
       style={{ backgroundColor: status?.color }}
     >
       <option value="" />
-      {statuses.map(s => (
+      {statuses.map((s: any) => (
         <option value={s.id}>{s.name}</option>
       ))}
     </select>

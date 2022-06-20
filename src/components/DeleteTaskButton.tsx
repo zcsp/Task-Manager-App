@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ChangeEventHandler, FormEventHandler, MouseEventHandler, useState } from "react";
+import Button from "./Button";
 
 const DeleteTaskButton = ({ taskId, afterSubmit }: { taskId: string; afterSubmit: () => void; }) => {
 
@@ -14,9 +15,9 @@ const DeleteTaskButton = ({ taskId, afterSubmit }: { taskId: string; afterSubmit
   }
 
   return (
-    <button onClick={handleClick}>
+    <Button onClick={handleClick}>
       x
-    </button>
+    </Button>
   )
 }
 

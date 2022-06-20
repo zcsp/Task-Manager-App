@@ -1,8 +1,10 @@
 import axios from "axios";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { useAppDataContext } from "../contexts/AppContext";
 
-const TaskUserInput = ({ taskId, taskUserId, users, afterSubmit }: { taskId: string; taskUserId: string; users: any[]; afterSubmit: () => void; }) => {
+const TaskUserInput = ({ taskId, taskUserId, afterSubmit }: { taskId: string; taskUserId: string; afterSubmit: () => void; }) => {
 
+  const { users } = useAppDataContext();
   const [userId, setUserId] = useState<string>(taskUserId);
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => setUserId(e.target.value);
   const handleSubmit: FormEventHandler<HTMLSelectElement> = (e) => {
@@ -16,9 +18,9 @@ const TaskUserInput = ({ taskId, taskUserId, users, afterSubmit }: { taskId: str
   }
 
   return (
-    <select placeholder="Select User" onChange={handleChange} value={userId} onBlur={handleSubmit}>
-      <option value="">Unassign</option>
-      {users.map(u => (
+    <select className="custom-select" placeholder="Select User" onChange={handleChange} value={userId} onBlur={handleSubmit}>
+      <option value="">Unassigned</option>
+      {users.map((u: any) => (
         <option value={u.id}>{u.name}</option>
       ))}
     </select>
