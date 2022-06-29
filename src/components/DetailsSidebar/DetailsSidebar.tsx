@@ -4,13 +4,14 @@ import { useAppDataContext } from "../../contexts/AppContext";
 import OutsideAlerter from "../OutsideAlerter";
 import './DetailsSidebar.scss';
 import NewUpdateEditor from "../NewUpdateEditor/NewUpdateEditor";
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw'
-
+import UpdateCard from "../UpdateCard";
+import TaskNameInput from "../TaskNameInput/TaskNameInput";
+import { useParams } from "react-router-dom";
 
 const DetailsSidebar = () => {
 
-  const { currentTask, setCurrentTask } = useAppDataContext();
+  const { currentTask, setCurrentTask, resetProject } = useAppDataContext();
+  const { project_id } = useParams();
   const [open, setOpen] = useState<boolean>(false);
   const [updates, setUpdates] = useState<any[]>([]);
 
@@ -34,6 +35,10 @@ const DetailsSidebar = () => {
     setCurrentTask(undefined)
   }
 
+  if (!currentTask) {
+    return <></>
+  }
+
   return (
     <div
       id="details-sidebar-backdrop"
@@ -45,16 +50,16 @@ const DetailsSidebar = () => {
         <div id="details-sidebar">
           <div>
             <div className="flex-container">
-              <h1>
-                {currentTask?.name}
-              </h1>
+              <TaskNameInput task={currentTask} afterSubmit={() => resetProject(project_id)} />
               <button onClick={handleCloseClick}>close</button>
             </div>
           </div>
           <NewUpdateEditor afterSubmit={getUpdates} />
-          {updates.map(update => (
-            <ReactMarkdown rehypePlugins={[rehypeRaw]} children={update.content} />
-          ))}
+          <div id="update-cards">
+            {updates.map(update => (
+              <UpdateCard update={update} />
+            ))}
+          </div>
         </div>
       </OutsideAlerter>
     </div>

@@ -29,4 +29,10 @@
       transform: translateX(-100%);
     }
   }
+
+  #update-cards {
+    > * {
+      margin-bottom: 16px;
+    }
+  }
 }

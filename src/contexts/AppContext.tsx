@@ -12,8 +12,19 @@ function AppDataProvider({
 
   const [project, setProject] = useState<any>();
   const [currentTask, setCurrentTask] = useState<any>();
+  const [currentUser, setCurrentUser] = useState<any>();
   const [users, setUsers] = useState([]);
   const [statuses, setStatuses] = useState([]);
+  const [projectList, setProjectList] = useState([]);
+
+  const resetProjectList = () => {
+    axios
+      .get("/api/projects")
+      .then((res) => {
+        setProjectList(res.data)
+      })
+      .catch((error) => console.error(error));
+  }
 
   const resetProject = (project_id: string) => {
     axios
@@ -29,6 +40,7 @@ function AppDataProvider({
       .get("/api/users")
       .then((res) => {
         setUsers(res.data)
+        setCurrentUser(res.data[0])
       })
       .catch((error) => console.error(error));
   }
@@ -45,6 +57,7 @@ function AppDataProvider({
   useEffect(() => {
     resetUsers()
     resetStatuses();
+    resetProjectList();
   }, [])
 
   return (
@@ -58,7 +71,10 @@ function AppDataProvider({
         statuses,
         resetStatuses,
         currentTask,
-        setCurrentTask
+        setCurrentTask,
+        projectList,
+        resetProjectList,
+        currentUser,
       }}
     >
       {children}

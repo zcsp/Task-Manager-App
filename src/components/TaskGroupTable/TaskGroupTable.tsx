@@ -12,7 +12,7 @@ import { useAppDataContext } from '../../contexts/AppContext';
 
 function TaskTable({ taskGroup }: { taskGroup: any; }) {
 
-  const { resetProject } = useAppDataContext();
+  const { resetProject, setCurrentTask } = useAppDataContext();
 
   const deleteTaskGroup = () => {
     if (window.confirm(`Do you want to delete the task group ${taskGroup.name}?`)) {
@@ -61,7 +61,9 @@ function TaskTable({ taskGroup }: { taskGroup: any; }) {
         {taskGroup.tasks.map((task: any) => (
           <tr key={`${task.name}-${task.id}`}>
             <td colSpan={3}>
-              <TaskNameInput task={task} afterSubmit={afterSubmit} />
+              <button className="sneaky-input task-name-button" onClick={() => setCurrentTask(task)}>
+                {task.name}
+              </button>
             </td>
             <td>
               {task.user}

@@ -1,8 +1,16 @@
 import { Link as RrdLink } from 'react-router-dom';
+import { useAppDataContext } from '../../contexts/AppContext';
+import CurrentUserSelect from '../CurrentUserSelect';
 import NewProjectButton from '../NewProjectButton';
 import './Navigation.scss';
 
-function SideNav({ projects }: { projects: any[] }) {
+function SideNav() {
+
+  const { projectList, resetProjectList } = useAppDataContext();
+
+  if (!projectList) {
+    return <>Loading...</>
+  }
 
   return (
     <div id="side-nav">
@@ -10,15 +18,20 @@ function SideNav({ projects }: { projects: any[] }) {
         <RrdLink to="/">
           Home
         </RrdLink>
-        {projects.map((p) => (
+        {projectList.map((p: any) => (
           <RrdLink to={`/project/${p.id}`} key={p.id}>
             {p.name}
           </RrdLink>
         ))}
       </nav>
       <div id="side-nav-actions">
-        {/* todo: move projects and all to context and make afterSubmit reusable */}
-        <NewProjectButton afterSubmit={() => { }} />
+        <div>
+          <label>
+            Current User
+            <CurrentUserSelect />
+          </label>
+        </div>
+        <NewProjectButton afterSubmit={resetProjectList} />
       </div>
     </div>
   );
