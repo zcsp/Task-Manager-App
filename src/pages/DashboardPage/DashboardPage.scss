@@ -1,0 +1,22 @@
+#dashboard-content {
+  padding: 32px;
+
+  h1 {
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin-bottom: 24px;
+  }
+
+  #dashboard-grid {
+    display: grid;
+    column-gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 400px;
+
+    .dayz {
+      grid-column: 1 / 3;
+    }
+  }
+}

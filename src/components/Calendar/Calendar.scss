@@ -1,0 +1,32 @@
+.dayz {
+  height: auto;
+  margin-bottom: 16px;
+
+  .body .days {
+    height: 400px;
+  }
+
+  .event {
+    cursor: pointer;
+  }
+
+  .day {
+    cursor: pointer;
+
+    &.before,
+    &.after.outside {
+      color: black;
+    }
+
+    &.highlight {
+      &:not(.outside) {
+        color: white;
+      }
+      background-color: rgba(255,255,255,0.2);
+
+      .label {
+        font-weight: 700;
+      }
+    }
+  }
+}

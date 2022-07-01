@@ -51,7 +51,6 @@ const DetailsSidebar = () => {
           <div>
             <div className="flex-container">
               <TaskNameInput task={currentTask} afterSubmit={() => resetProject(project_id)} />
-              <button onClick={handleCloseClick}>close</button>
             </div>
           </div>
           <NewUpdateEditor afterSubmit={getUpdates} />

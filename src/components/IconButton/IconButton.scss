@@ -1,0 +1,17 @@
+.icon-button {
+  color: white;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 100%;
+  border-radius: 50%;
+  background-color: #2F6DDA;
+  &.danger {
+    background-color: #eb144c;
+  }
+}

@@ -9,6 +9,7 @@ import './ProjectPage.scss';
 import NewTaskFormRow from '../../components/NewTaskForm';
 import Button from '../../components/Button';
 import { useAppDataContext } from '../../contexts/AppContext';
+import IconButton from '../../components/IconButton';
 
 function ProjectPage() {
 
@@ -53,9 +54,9 @@ function ProjectPage() {
       <div id="project-page">
         <div id="project-page-name" className="flex-container">
           <h1 style={{ marginRight: '8px' }}>{project.name}</h1>
-          <Button onClick={handleDelete}>
+          <IconButton variant="danger" onClick={handleDelete}>
             x
-          </Button>
+          </IconButton>
         </div>
         <ProjectDescriptionInput projectId={project.id} projectDescription={project.description} afterSubmit={() => resetProject(project_id)} />
         {project.task_groups && project.task_groups.map((tg: any) => (

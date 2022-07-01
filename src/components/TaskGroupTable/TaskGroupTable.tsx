@@ -62,7 +62,7 @@ function TaskTable({ taskGroup }: { taskGroup: any; }) {
           <tr key={`${task.name}-${task.id}`}>
             <td colSpan={3}>
               <button className="sneaky-input task-name-button" onClick={() => setCurrentTask(task)}>
-                {task.name}
+                <span>{task.name}</span>
               </button>
             </td>
             <td>

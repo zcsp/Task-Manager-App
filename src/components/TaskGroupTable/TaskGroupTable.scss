@@ -28,5 +28,11 @@
     width: 100%;
     color: white;
     text-align: left;
+
+    &:hover > span:after {
+      content: "Edit";
+      color: #ccc;
+      margin-left: 8px;
+    }
   }
 }
