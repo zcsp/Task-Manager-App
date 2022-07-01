@@ -14,7 +14,6 @@ const DayTasks = ({ day }: DayTasksProps) => {
     axios
       .get(`/api/tasks?date=${day}`)
       .then((res) => {
-        console.log(res.data)
         setTasks(res.data)
       })
       .catch((error) => console.error(error));

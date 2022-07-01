@@ -3,7 +3,6 @@ import rehypeRaw from 'rehype-raw'
 import './UpdateCard.scss';
 
 const UpdateCard = ({ update }: { update: any }) => {
-  console.log(update)
   return (
     <div className="update-card">
       {update?.user?.name && <h4>{update.user.name}</h4>}

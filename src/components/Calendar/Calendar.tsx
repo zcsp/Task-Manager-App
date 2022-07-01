@@ -24,6 +24,7 @@ const Calendar = ({ selectedDay, setSelectedDay }: CalendarProps) => {
           return {
             content: task.name,
             range: moment.range(moment(task.start_date), moment(task.end_date)),
+            task,
           }
         }))
         setTasks(dayzEvents);

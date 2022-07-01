@@ -9,7 +9,6 @@ const TaskGroupColorInput = ({ taskGroup, afterSubmit }: { taskGroup: any; after
   const toggleOpen = () => setOpen(open => !open)
   const handleChangeComplete: ColorChangeHandler = (c, e) => {
     e.preventDefault();
-    console.log(c)
     axios
       .put(`/api/task_groups/${taskGroup.id}`, { task_group: { color: c.hex } })
       .then((res) => {

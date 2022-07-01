@@ -1,18 +1,17 @@
 import { Popover, ArrowContainer } from 'react-tiny-popover'
 import './TaskPopover.scss';
 
-const TaskPopover = (props: any) => {
-
-  console.log(props)
-  console.log(props.event.isEditing())
+const TaskPopover = ({ event, children }: any) => {
 
   const closePopover = () => {
-    props.event.set({ editing: false });
+    event.set({ editing: false });
   }
+
+  const eventTask = event.attributes.task;
 
   return (
     <Popover
-      isOpen={props.event.isEditing()}
+      isOpen={event.isEditing()}
       onClickOutside={closePopover}
       positions={['top', 'right', 'left', 'bottom']}
       content={
@@ -27,13 +26,13 @@ const TaskPopover = (props: any) => {
             arrowClassName='popover-arrow'
           >
             <div className="task-popover">
-              Hi! I'm popover content.
+              {eventTask.task_group.project.name} - {eventTask.name}
             </div>
           </ArrowContainer>
         )
       }
     >
-      <div {...props.children.props} />
+      <div {...children.props} />
     </Popover>
   )
 }
