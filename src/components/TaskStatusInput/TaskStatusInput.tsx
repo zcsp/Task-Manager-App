@@ -24,7 +24,7 @@ const TaskStatusInput = ({ taskId, taskStatusId, afterSubmit }: { taskId: string
     let newStatus = getStatusById(e.target.value, statuses)
     setStatus(newStatus)
     axios
-      .put(`/api/tasks/${taskId}`, { task: { status_id: newStatus.id } })
+      .put(`/api/tasks/${taskId}`, { task: { status_id: newStatus ? newStatus.id : null } })
       .then((res) => {
         afterSubmit();
       })
