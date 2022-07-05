@@ -1,4 +1,5 @@
 import { Popover, ArrowContainer } from 'react-tiny-popover'
+import TaskForm from '../TaskForm';
 import './TaskPopover.scss';
 
 const TaskPopover = ({ event, children }: any) => {
@@ -20,13 +21,13 @@ const TaskPopover = ({ event, children }: any) => {
             position={position}
             childRect={childRect}
             popoverRect={popoverRect}
-            arrowColor={'white'}
+            arrowColor="white"
             arrowSize={10}
-            className='popover-arrow-container'
+            className="popover-arrow-container"
             arrowClassName='popover-arrow'
           >
             <div className="task-popover">
-              {eventTask.task_group.project.name} - {eventTask.name}
+              <TaskForm task={eventTask} afterSubmit={event.attributes.afterSubmit} />
             </div>
           </ArrowContainer>
         )

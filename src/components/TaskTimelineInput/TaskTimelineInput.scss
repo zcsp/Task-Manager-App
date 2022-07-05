@@ -1,9 +1,9 @@
 .task-daterange-picker {
-  input {
-    color: white;
-  }
-
   svg {
     stroke: white;
+  }
+
+  input:last-child {
+    width: unset !important;
   }
 }

@@ -1,8 +1,22 @@
 .react-tiny-popover-container {
   z-index: 9999;
+
   .task-popover {
     padding: 8px;
     background-color: white;
     color: black;
+
+    form {
+      > * {
+        margin-bottom: 4px;
+      }
+      .react-daterange-picker {
+        width: 100%;
+      }
+    }
+  }
+
+  .popover-arrow {
+    bottom: 1px !important;
   }
 }
