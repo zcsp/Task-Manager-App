@@ -10,7 +10,7 @@ import Button from '../Button';
 import axios from 'axios';
 import { useAppDataContext } from '../../contexts/AppContext';
 
-function TaskTable({ taskGroup }: { taskGroup: any; }) {
+function TaskTable({ taskGroup, order }: { taskGroup: any; order: number; }) {
 
   const { resetProject, setCurrentTask } = useAppDataContext();
 
@@ -24,6 +24,17 @@ function TaskTable({ taskGroup }: { taskGroup: any; }) {
         .catch((error) => console.error(error));
     }
   }
+
+  const moveTaskGroup = (order: number) => {
+    axios
+      .put(`/api/task_groups/${taskGroup.id}/order`, { order })
+      .then((res) => {
+        afterSubmit();
+      })
+      .catch((error) => console.error(error));
+  }
+  const moveTaskGroupUp = () => moveTaskGroup(order - 1)
+  const moveTaskGroupDown = () => moveTaskGroup(order + 1)
 
   const afterSubmit = () => {
     resetProject(taskGroup.project_id)
@@ -51,6 +62,12 @@ function TaskTable({ taskGroup }: { taskGroup: any; }) {
             Timeline
           </th>
           <th>
+            <Button className="tg-move-up-button" onClick={moveTaskGroupUp}>
+              &and;
+            </Button>
+            <Button className="tg-move-down-button" onClick={moveTaskGroupDown}>
+              &or;
+            </Button>
             <Button onClick={deleteTaskGroup}>
               x
             </Button>

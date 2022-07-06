@@ -41,4 +41,12 @@
       color: white;
     }
   }
+
+  &:first-of-type .tg-move-up-button {
+    display: none;
+  }
+
+  &:last-of-type .tg-move-down-button {
+    display: none;
+  }
 }

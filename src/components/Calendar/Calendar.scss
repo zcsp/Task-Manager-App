@@ -11,35 +11,51 @@
     border-color: transparent;
     color: white;
     background-color: #7A7E91;
-    &:before, &:after {
-      border-color: #7A7E91;
+    &.is-continuation::before {
+      border-color: transparent #7A7E91 transparent transparent;
+    }
+
+    &.is-continued::after {
+      border-color: transparent transparent transparent #7A7E91;
     }
 
     &.done {
       background-color: rgb(106, 208, 150);
-      &:before, &:after {
-        border-color: rgb(106, 208, 150);
+      &:before{
+        border-color: transparent rgb(106, 208, 150) transparent transparent;
+      }
+      &:after {
+        border-color: transparent transparent transparent rgb(106, 208, 150);
       }
     }
 
     &.stuck {
       background-color: rgb(216, 112, 127);
-      &:before, &:after {
-        border-color: rgb(216, 112, 127);
+      &:before{
+        border-color: transparent rgb(216, 112, 127) transparent transparent;
+      }
+      &:after {
+        border-color: transparent transparent transparent rgb(216, 112, 127);
       }
     }
 
     &.in-progress {
       background-color: rgb(243, 191, 114);
-      &:before, &:after {
-        border-color: rgb(243, 191, 114);
+      &:before{
+        border-color: transparent rgb(243, 191, 114) transparent transparent;
+      }
+      &:after {
+        border-color: transparent transparent transparent rgb(243, 191, 114);
       }
     }
 
     &.wont-be-done {
       background-color: black;
-      &:before, &:after {
-        border-color: black;
+      &:before{
+        border-color: transparent black transparent transparent;
+      }
+      &:after {
+        border-color: transparent transparent transparent black;
       }
     }
   }

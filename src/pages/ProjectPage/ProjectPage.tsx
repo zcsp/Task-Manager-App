@@ -59,12 +59,14 @@ function ProjectPage() {
           </IconButton>
         </div>
         <ProjectDescriptionInput projectId={project.id} projectDescription={project.description} afterSubmit={() => resetProject(project_id)} />
-        {project.task_groups && project.task_groups.map((tg: any) => (
-          <Fragment key={`${tg.name}-${tg.id}`}>
-            <TaskGroupTable taskGroup={tg} />
-            <NewTaskFormRow taskGroup={tg} afterSubmit={() => resetProject(project_id)} />
-          </Fragment>
-        ))}
+        {project.task_groups &&
+          project.task_groups.sort((a: any, b: any) => a.order > b.order ? 1 : -1)
+            .map((tg: any, i: number) => (
+              <Fragment key={`${tg.name}-${tg.id}`}>
+                <TaskGroupTable taskGroup={tg} order={i} />
+                <NewTaskFormRow taskGroup={tg} afterSubmit={() => resetProject(project_id)} />
+              </Fragment>
+            ))}
         <Button onClick={createTaskGroup}>
           New Task Group
         </Button>
