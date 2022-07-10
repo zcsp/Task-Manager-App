@@ -13,7 +13,10 @@ const NewTaskRow = ({ taskGroup, afterSubmit }: { taskGroup: any; afterSubmit: (
       reqBody[k] = v;
     })
     axios
-      .post("/api/tasks", { task: reqBody })
+      .post("/api/tasks", {
+        task: reqBody,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      })
       .then((res) => {
         setName('');
         afterSubmit();

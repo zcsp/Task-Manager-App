@@ -16,6 +16,7 @@ const Modal = ({ style, ...rest }: ReactModal.Props) => {
           color: '#000',
           borderRadius: '8px',
           width: 'fit-content',
+          zIndex: 9999,
           ...style?.content,
         }
       }}

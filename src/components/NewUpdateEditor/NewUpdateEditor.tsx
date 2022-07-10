@@ -44,8 +44,8 @@ const NewUpdateEditor = ({ afterSubmit }: { afterSubmit: () => void; }) => {
               ref={editorRef}
               apiKey="emsqvxp8ckgrd8rdofg68w9lvgj01eduldukzn0x5g63m0om"
               init={{
-                plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen table advtable',
-                toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+                // plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen table advtable',
+                // toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
                 auto_focus: true
               }}
             />

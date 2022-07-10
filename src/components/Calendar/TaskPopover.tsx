@@ -1,18 +1,22 @@
+import { useState } from 'react';
 import { Popover, ArrowContainer } from 'react-tiny-popover'
 import TaskForm from '../TaskForm';
 import './TaskPopover.scss';
 
 const TaskPopover = ({ event, children }: any) => {
+  const [open, setOpen] = useState<boolean>(event.isEditing())
 
-  const closePopover = () => {
-    event.set({ editing: false });
+  const closePopover = (e: Event) => {
+    // e is the popover's event, not the event prop (which represents the task)
+    setOpen(false);
+    // event.set({ editing: false });
   }
 
   const eventTask = event.attributes.task;
 
   return (
     <Popover
-      isOpen={event.isEditing()}
+      isOpen={open}
       onClickOutside={closePopover}
       positions={['top', 'right', 'left', 'bottom']}
       content={
